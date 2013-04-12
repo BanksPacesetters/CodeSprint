@@ -1,0 +1,57 @@
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Criteria</a></li>
+</ul>
+<div id="tabs-1" class="range">       
+         
+          	<form name='year_form' method="post" action="?action=trends">
+          From:<select name="from_year">
+          	<?php 
+          	global $database; 
+          	$the_limits = CSVOPS::findStoreLimits($database); 
+          	for($i=$the_limits[0]['min_year'];$i<=$the_limits[0]['max_year'];$i++)
+          		echo "<option>".$i."</option>";
+          		
+          		?>
+          	
+          </select>
+          To:<select name="to_year">
+          	<?php 
+          	global $database; 
+          	$the_limits = CSVOPS::findStoreLimits($database); 
+          	for($i=$the_limits[0]['min_year'];$i<=$the_limits[0]['max_year'];$i++)
+          		echo "<option>".$i."</option>";
+          		
+          		?>
+          </select><p><?php
+          global $database;
+          
+          	$all_countries = Extractor::get_countries($database);
+          	$addition="Select Country:<select name=\"country_select\"><option></option>";	
+			foreach($all_countries as $country)
+			{
+				$addition .= "<option>" . $country['country'] . "</option>";
+			}
+			$addition .= "</select>(Leave Blank for All Countries)";
+			
+			echo $addition;
+			?></p>
+          
+          <p>
+          	
+          <input type="submit" name="submit_trend_year" value="Change Trend Criteria" class="trndsub" />
+          </p>	
+          	
+          	
+          </form>
+
+</div>
+</div>          
+                  
+   		  <div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+<div id="footer">
+		Copyright &copy; 2007 - 2013 IOLA and Ole Laursen
+			</div>
+		

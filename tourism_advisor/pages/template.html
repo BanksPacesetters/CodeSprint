@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{site_name} | {page_name}</title>
+
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="demos.css" type="text/css" media="screen" />
+<link href="flot/examples/examples.css" rel="stylesheet" type="text/css" />
+<link href="style/jquery-ui-custom.css" rel="stylesheet" type="text/css" />
+
+    
+
+
+
+<!--[if lt IE 9]><script src="../excanvas/excanvas.js"></script><![endif]-->
+
+<script type="text/javascript" language="javascript" src="lib/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="flot/jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="flot/jquery.flot.pie.js"></script>
+<script type="text/javascript" language="javascript" src="flot/jquery.flot.categories.js"></script>
+<script type="text/javascript" language="javascript" src="lib/js/jquery-ui.js"></script>
+<script>
+  $(function() {
+	$( "a.pitem, .trndsub" )
+      .button()
+      .click(function( event ) {
+        //event.preventDefault();
+    });  
+	  
+    $( "#tabs" ).tabs();
+  });
+  
+  $(function(){
+  	
+  	$("form[name='year_form']").submit(function(){
+  		
+  		var from_year = $("select[name='from_year']").val();
+  		var to_year = $("select[name='to_year']").val();
+  		
+  		if(from_year > to_year)
+  		{
+  			//alert("'From year' cannot be after 'to year'");
+  			$( "<div title='Error'>From year' cannot be after 'to year</div>" ).dialog({
+																							modal: true,
+																							buttons: {
+																								Ok: function() {
+																									$( this ).dialog( "close" );
+																								}
+																							}
+																						});
+  			return false;
+  		}
+  		
+  		
+  	});
+  	
+  	
+  });
+  
+  // var data = [[0, 10000], [4, 12000], [8, 13000], [9, 13000]];
+  // $.plot('#placeholder', data, {
+    // series: {
+        // pie: {
+            // show: true
+        // }
+    // }
+  // });
+  </script>
+  {scripts}
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="title">
+      <h2>{site_name}</h2>
+    </div>
+    <!-- end .header --></div>
+  <div class="content">
+    <div class="menu">{primary_links}</div>
+    <br />
+    <h3>{page_name}</h3>
+    
+      
+      {content} 
+     
+    <!-- end .content --></div>
+  <div class="footer">
+    <p>{footer}</p>
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+</body>
+	
+</html>
